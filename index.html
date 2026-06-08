@@ -479,12 +479,9 @@ const questions = [
     { text: "拍手の回数にこだわりがある", axes: ["mi"] },
     { text: "信頼できるのはレシートだけだ", axes: ["mo"] },
     { text: "明日は晴れるだろう", axes: ["yu"] },
-    
-    // 💃 踊りゾーン（中盤に3連発）
     { text: "座る暇があったら踊る", axes: ["nu"] },                
-    { text: "踊った後は必ずと言っていいほど踊る", axes: ["yu"] }, 
-    { text: "1人より2人、2人より踊りである", axes: ["mo"] },      
-
+    { text: "静かな部屋ほど、耳の奥で誰かが口笛を吹いている気がする", axes: ["mi"] }, 
+    { text: "気がつくと、親指と人差し指で綺麗な直角を作っている", axes: ["mo"] },
     { text: "時々無性に転がりたくなる", axes: ["nu"] },
     { text: "透明になった場合、すぐには言わない", axes: ["mi"], inverse: true },
     { text: "焼き芋は作るより食べるものだ", axes: ["mo"] },         
@@ -704,10 +701,11 @@ function showResult() {
         return;
     }
 
-    const isMo = scores.mo >= scores.fu;
-    const isYu = scores.yu >= scores.se;
-    const isNu = scores.nu >= scores.re;
-    const isMi = scores.mi >= scores.shi;
+    // （同点なら 50% の確率でどちらかになる）
+    const isMo = scores.mo === scores.fu ? Math.random() >= 0.5 : scores.mo > scores.fu;
+    const isYu = scores.yu === scores.se ? Math.random() >= 0.5 : scores.yu > scores.se;
+    const isNu = scores.nu === scores.re ? Math.random() >= 0.5 : scores.nu > scores.re;
+    const isMi = scores.mi === scores.shi ? Math.random() >= 0.5 : scores.mi > scores.shi;
 
     currentType = (isMo?"も":"ふ") + (isYu?"ゆ":"せ") + (isNu?"ぬ":"れ") + (isMi?"み":"し");
     document.getElementById("result-code").innerText = currentType;
