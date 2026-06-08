@@ -826,15 +826,18 @@ function toggleIndividualDetail(element) {
 function shareOnTwitter() {
     let shareText = "";
     if (allCenter) {
-        shareText = `【謎の生態診断】の結果、世界の外側にある生態【 ？？？？ 】でした。`;
+        shareText = `── 世界の外側にある生態 ──\n\n【 ？？？？ 】\n\n何ひとつ選ばなかった。私は本当に世界の内側にいるのだろうか？\n\n#謎の生態診断`;
     } else {
         const features = bionarratives[currentType];
         const primaryFeature = features && features.length > 0 ? features[0] : "";
-        shareText = `【謎の生態診断】の結果、私の生態は【 ${currentType} 】でした！\n\n《特徴》\n${primaryFeature}`;
+        const secondaryFeature = features && features.length > 1 ? features[1] : "";
+        
+        shareText = `🧪【謎の生態診断】の結果\n━━━━━━━━━━━━━━━\n\n私の生態は【 ${currentType} 】でした！\n\n《 特徴 》\n🐾 ${primaryFeature}\n🐾 ${secondaryFeature}\n\n気になったらあなたも診断してみてね。`;
     }
     
     const shareUrl = window.location.href; 
-    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}&hashtags=謎の生態診断`;
+    // 末尾の &hashtags=... を完全に削除しました！
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`;
     window.open(twitterUrl, '_blank');
 }
 
