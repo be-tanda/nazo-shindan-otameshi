@@ -535,7 +535,7 @@ const romanMap = {
     'も': 'mo', 'ふ': 'fu',
     'ゆ': 'yu', 'せ': 'se',
     'ぬ': 'nu', 'れ': 're',
-    'み': 'mi', 'し': 'nushi'
+    'み': 'mi', 'し': 'shi'
 };
 
 let currentIdx = 0;
@@ -713,7 +713,7 @@ function showResult() {
     let romanFileName = "";
     for(let i=0; i<currentType.length; i++) {
         const char = currentType[i];
-        romanFileName += (i === 3 && char === 'し') ? "nushi" : (romanMap[char] || "");
+       romanFileName += (romanMap[char] || ""); 
     }
 
     noDataTag.style.display = "none";
