@@ -684,7 +684,7 @@ function showResult() {
     document.getElementById("result-screen").style.display = "block";
 
     const msgElement = document.getElementById("special-message");
-    if (lastSpecialAnswer > 0) msgElement.innerText = "\\ もう一口ちょうだい /";
+    if (lastSpecialAnswer > 0) msgElement.innerText = "\\ もう一口ちょうだい！ /";
     else if (lastSpecialAnswer < 0) msgElement.innerText = "\\ 次は一口もらえることを願って… /";
     else msgElement.innerText = "";
 
